@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cd7e04c4-a745-46f2-8bc1-e13edde606a8"
+      }
+    },
+    "owner": "vikrantk"
   }
 }
