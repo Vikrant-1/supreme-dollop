@@ -1,8 +1,20 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { StatusBar } from "expo-status-bar";
+import { Button } from "tamagui";
+import { router } from "expo-router";
+import { LOGIN, SIGNUP } from "@/constants/OnBoarding";
 
 const onboarding = () => {
+  const goToAuthPage = (screen: string) => {
+    router.navigate({
+      pathname: "/loginscreen",
+      params: {
+        screenType: screen,
+      },
+    });
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar />
@@ -16,6 +28,23 @@ const onboarding = () => {
           when you are confused about managing your task come to us
         </Text>
       </View>
+
+      <View style={styles.bottomView}>
+        <Button
+          style={styles.button}
+          onPress={() => goToAuthPage(LOGIN)}
+          size={"$5"}
+        >
+          Login
+        </Button>
+        <Button
+          style={[styles.signButton]}
+          onPress={() => goToAuthPage(SIGNUP)}
+          size={"$5"}
+        >
+          Signup
+        </Button>
+      </View>
     </View>
   );
 };
@@ -23,9 +52,11 @@ const onboarding = () => {
 export default onboarding;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   center: {
-    marginTop: 50,
+    marginTop: "25%",
     paddingHorizontal: 40,
     alignItems: "center",
   },
@@ -33,6 +64,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 300,
     resizeMode: "contain",
+    marginBottom: 40,
   },
   centerTitle: {
     color: "#363942",
@@ -44,5 +76,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     fontSize: 14,
     marginTop: 10,
+  },
+  bottomView: {
+    width: "100%",
+    position: "absolute",
+    bottom: 50,
+    alignSelf: "center",
+    paddingHorizontal: 15,
+  },
+  button: {
+    backgroundColor: "#4B7BE5",
+    color: "white",
+    marginBottom: 12,
+  },
+  signButton: {
+    backgroundColor: "transparent",
+    borderWidth: 1,
+    borderColor: "#4B78E5",
   },
 });
